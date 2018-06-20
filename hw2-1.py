@@ -2,7 +2,7 @@ import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
 import pickle
-from cnn_model import cnn_model
+from cnn_model2 import cnn_model
 import sklearn.preprocessing
 from Dataset.augmentation import augmentation
 import time
