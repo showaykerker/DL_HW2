@@ -11,7 +11,7 @@ import cv2
 
 time_ = time.strftime("%m%d%H%M", time.localtime())
 load_path = 'Dataset/food-11_180.pkl'
-log_path = './log/'+time_+'/'
+log_path = './log/'+time_+'no_regularization/'
 
 if not os.path.exists(log_path): os.makedirs(log_path)
 
@@ -23,9 +23,9 @@ config = tf.ConfigProto()
 #config.gpu_options.per_process_gpu_memory_fraction = 0.7
 
 
-LR = 0.00001
-n_STEPS = 7500
-BATCH_SIZE = 128
+LR = 0.0001
+n_STEPS = 8000
+BATCH_SIZE = 256
 DISPLAY_EVERY = 100
 
 with open(load_path, 'rb') as f:
@@ -71,7 +71,8 @@ init = tf.global_variables_initializer()
 
 with tf.Session(config=config) as sess:
 	sess.run(init)
-
+	print('\n\n\n')
+	print('Total trainable:', model.count())
 	for step in range(1, n_STEPS+1):
 		idx = np.random.choice(len(X_train), BATCH_SIZE)
 		batch_X, batch_Y = [X_train[i] for i in idx ], [Y_train[i] for i in idx ]

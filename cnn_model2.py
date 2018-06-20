@@ -51,6 +51,13 @@ class cnn_model:
 
 			self.prob = tf.nn.softmax(self.logits)
 
+			tf.summary.histogram("conv1", self.conv1)
+			tf.summary.histogram("conv2", self.conv2)
+			tf.summary.histogram("conv3", self.conv3)
+			tf.summary.histogram("fc1", self.fc1)
+			tf.summary.histogram("fc2", self.fc2)
+			tf.summary.histogram("fc3", self.fc3)
+
 			return self.prob, self.logits
 
 
@@ -58,7 +65,7 @@ class cnn_model:
 	def conv_layer(self, input_, name):
 		
 		with tf.variable_scope(name):
-			regularizer = tf.contrib.layers.l2_regularizer(scale=0.1)
+			regularizer = None #tf.contrib.layers.l2_regularizer(scale=0.1)
 			conv = tf.layers.conv2d(input_, 
 									filters     = CONV[name]['filters'], 
 									kernel_size = CONV[name]['kernel_size'],
