@@ -56,3 +56,9 @@ docs/_build/
 
 # PyBuilder
 target/
+
+Dataset/Food-11/
+
+Dataset/food-11_180\.pkl
+
+log/
