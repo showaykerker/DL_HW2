@@ -3,7 +3,7 @@ import tensorflow as tf
 import cv2
 import numpy as np
 
-IMAGE_SIZE = 180
+IMAGE_SIZE = 160
 
 
 def augmentation(data, label, sess):

@@ -17,7 +17,7 @@ train_data_pkl = 'food-11_train.pkl'
 validate_data_pkl = 'food-11_validate.pkl'
 
 
-IMAGE_SIZE = aug.IMAGE_SIZE
+IMAGE_SIZE = 160
 
   
 def resize(frame):
@@ -29,7 +29,7 @@ def resize(frame):
 		ratio = IMAGE_SIZE/h
 		border = int((IMAGE_SIZE - int(w*ratio))/2)
 
-		try: new_img[:,border:border+int(w*ratio),:] = cv2.resize(frame, (int(w*ratio), 180))/255
+		try: new_img[:,border:border+int(w*ratio),:] = cv2.resize(frame, (int(w*ratio), IMAGE_SIZE))/255
 		except: 
 			print(h, w, ratio)
 			print(int(w*ratio), int(h*ratio))
@@ -39,7 +39,7 @@ def resize(frame):
 	else:
 		ratio = IMAGE_SIZE/w
 		border = int((IMAGE_SIZE - int(h*ratio))/2)
-		try: new_img[border:border+int(h*ratio),:,:] = cv2.resize(frame, (180, int(h*ratio)))/255
+		try: new_img[border:border+int(h*ratio),:,:] = cv2.resize(frame, (IMAGE_SIZE, int(h*ratio)))/255
 		except: 
 			print(h, w, ratio)
 			print(int(w*ratio), int(h*ratio))
@@ -47,8 +47,8 @@ def resize(frame):
 			print(cv2.resize(frame, (int(w*ratio), int(h*ratio))).shape)
 
 
-	# cv2.imshow('',new_img)
-	# cv2.waitKey(1)
+	cv2.imshow('',new_img)
+	cv2.waitKey(1)
 
 	return new_img
 
